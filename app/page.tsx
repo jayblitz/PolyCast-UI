@@ -52,7 +52,7 @@ const markets = [
 
 export default function HomePage() {
   return (
-    <div className="min-h-screen">
+    <div className="min-h-screen bg-background">
       <Header />
       <SectorNav activeSector="Trending" />
 
@@ -62,7 +62,7 @@ export default function HomePage() {
         {/* Markets Grid */}
         <div className="px-3 py-4">
           <h2 className="mb-4 text-lg font-bold">All Markets</h2>
-          <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+          <div className="grid gap-4 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3">
             {markets.map((market) => (
               <Link key={market.id} href={`/event/${market.id}`}>
                 <MarketCard {...market} />

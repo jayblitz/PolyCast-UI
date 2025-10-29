@@ -1,31 +1,33 @@
 "use client"
 
 import { useState } from "react"
-import { MarketCard } from "./market-card"
+import { Card, CardContent } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { ChevronLeft, ChevronRight } from "lucide-react"
+import { Progress } from "@/components/ui/progress"
+import Image from "next/image"
 
 const liveBets = [
   {
-    title: "Will Bitcoin reach $100,000 by end of 2025?",
+    title: "Bitcoin Up or Down",
+    subtitle: "October 29, 5-6AM ET",
     probability: 68,
     volume: "$2.4M",
-    isLive: true,
     image: "/bitcoin-cryptocurrency-chart.jpg",
   },
   {
-    title: "Will Ethereum surpass $5,000 this year?",
+    title: "Ethereum Up or Down",
+    subtitle: "October 29, 6AM ET",
     probability: 52,
     volume: "$1.8M",
-    isLive: true,
     image: "/ethereum-cryptocurrency-chart.jpg",
   },
   {
-    title: "Will Solana reach $300 in 2025?",
+    title: "Solana Up or Down",
+    subtitle: "October 29, 6AM ET",
     probability: 45,
     volume: "$980K",
-    isLive: true,
-    image: "/solana-cryptocurrency-chart.jpg",
+    image: "/solana-cryptocurrency.jpg",
   },
 ]
 
@@ -45,10 +47,20 @@ export function LiveBetsCarousel() {
       <div className="mb-3 flex items-center justify-between">
         <h2 className="text-lg font-bold">Live Bets</h2>
         <div className="flex gap-1">
-          <Button size="icon" variant="outline" onClick={prev} className="h-8 w-8 bg-transparent">
+          <Button
+            size="icon"
+            variant="outline"
+            onClick={prev}
+            className="h-8 w-8 bg-transparent hover:scale-110 transition-transform"
+          >
             <ChevronLeft className="h-4 w-4" />
           </Button>
-          <Button size="icon" variant="outline" onClick={next} className="h-8 w-8 bg-transparent">
+          <Button
+            size="icon"
+            variant="outline"
+            onClick={next}
+            className="h-8 w-8 bg-transparent hover:scale-110 transition-transform"
+          >
             <ChevronRight className="h-4 w-4" />
           </Button>
         </div>
@@ -61,7 +73,36 @@ export function LiveBetsCarousel() {
         >
           {liveBets.map((bet, index) => (
             <div key={index} className="w-full flex-shrink-0 px-1">
-              <MarketCard {...bet} />
+              <Card className="overflow-hidden hover:shadow-lg transition-shadow">
+                <div className="relative h-32 w-full">
+                  <Image src={bet.image || "/placeholder.svg"} alt={bet.title} fill className="object-cover" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
+                  <div className="absolute bottom-2 left-3 text-white">
+                    <h3 className="font-semibold text-balance">{bet.title}</h3>
+                    <p className="text-xs text-white/80">{bet.subtitle}</p>
+                  </div>
+                </div>
+                <CardContent className="p-3">
+                  <div className="mb-2 flex items-center justify-between text-sm">
+                    <span className="text-muted-foreground">Probability</span>
+                    <span className="font-semibold">{bet.probability}%</span>
+                  </div>
+                  <Progress value={bet.probability} className="mb-3 h-2" />
+                  <div className="flex gap-2">
+                    <Button size="sm" className="flex-1 bg-green-600 hover:bg-green-700 hover:scale-105 transition-all">
+                      Yes {bet.probability}¢
+                    </Button>
+                    <Button
+                      size="sm"
+                      variant="outline"
+                      className="flex-1 hover:bg-red-50 dark:hover:bg-red-950 hover:scale-105 transition-all bg-transparent"
+                    >
+                      No {100 - bet.probability}¢
+                    </Button>
+                  </div>
+                  <p className="mt-2 text-xs text-muted-foreground text-center">Volume: {bet.volume}</p>
+                </CardContent>
+              </Card>
             </div>
           ))}
         </div>
