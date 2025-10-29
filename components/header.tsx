@@ -18,13 +18,13 @@ export function Header() {
               <path d="M3 3h8v8H3V3zm10 0h8v8h-8V3zM3 13h8v8H3v-8zm10 0h8v8h-8v-8z" />
             </svg>
           </div>
-          <h1 className="text-lg font-bold">PolyCast 🇺🇸</h1>
+          <h1 className="text-lg font-bold">PolyCast</h1>
         </Link>
 
         {/* Search Bar */}
         <div className="relative hidden flex-1 max-w-md md:block">
           <Search className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
-          <Input type="search" placeholder="Search polymarket" className="w-full pl-9 h-9 bg-muted/50" />
+          <Input type="search" placeholder="Search polycast" className="w-full pl-9 h-9 bg-muted/50" />
         </div>
 
         <div className="flex items-center gap-3">

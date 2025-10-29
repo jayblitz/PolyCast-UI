@@ -40,9 +40,9 @@ export function TradingPanel() {
 
       {/* Up/Down Buttons */}
       <div className="mb-6 grid grid-cols-2 gap-3">
-        <Button className="h-14 bg-green-600 text-lg font-semibold hover:bg-green-700">Up 82¢</Button>
+        <Button className="h-14 bg-green-600 text-lg font-semibold hover:bg-green-700">Up 18¢</Button>
         <Button variant="secondary" className="h-14 text-lg font-semibold">
-          Down 21¢
+          Down 86¢
         </Button>
       </div>
 
@@ -70,7 +70,7 @@ export function TradingPanel() {
         </div>
       </div>
 
-      <Button className="mb-4 h-12 w-full bg-primary text-base font-semibold hover:bg-primary/90">Trade</Button>
+      <Button className="mb-4 h-12 w-full bg-primary text-base font-semibold hover:bg-primary/90">Deposit</Button>
 
       {/* Terms */}
       <p className="text-center text-xs text-muted-foreground">

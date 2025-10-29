@@ -43,23 +43,23 @@ export default async function EventPage({ params }: { params: Promise<{ id: stri
             <div className="mb-6 flex items-start gap-8">
               <div>
                 <p className="mb-1 text-xs text-muted-foreground">PRICE TO BEAT</p>
-                <p className="text-3xl font-bold text-muted-foreground">$112,974.44</p>
+                <p className="text-3xl font-bold text-muted-foreground">$113,070.94</p>
               </div>
               <div>
                 <p className="mb-1 flex items-center gap-2 text-xs text-muted-foreground">
                   CURRENT PRICE
-                  <span className="text-green-600">▲$134</span>
+                  <span className="text-destructive">▼$153</span>
                 </p>
-                <p className="text-3xl font-bold text-[#F7931A]">$113,108.73</p>
+                <p className="text-3xl font-bold text-[#F7931A]">$112,917.49</p>
               </div>
               <div className="ml-auto text-right">
                 <div className="flex items-baseline gap-2">
                   <div>
-                    <p className="text-3xl font-bold text-destructive">23</p>
+                    <p className="text-3xl font-bold text-destructive">14</p>
                     <p className="text-xs text-muted-foreground">MINS</p>
                   </div>
                   <div>
-                    <p className="text-3xl font-bold text-destructive">00</p>
+                    <p className="text-3xl font-bold text-destructive">54</p>
                     <p className="text-xs text-muted-foreground">SECS</p>
                   </div>
                 </div>

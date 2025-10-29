@@ -5,13 +5,21 @@ import { Button } from "@/components/ui/button"
 import { ChevronDown, TrendingUp, RefreshCw } from "lucide-react"
 
 const chartData = [
-  { time: "10:11:36 AM", price: 112950 },
-  { time: "10:11:42 AM", price: 112955 },
-  { time: "10:11:48 AM", price: 112965 },
-  { time: "10:11:54 AM", price: 112970 },
-  { time: "10:12:00 AM", price: 112968 },
-  { time: "10:12:06 AM", price: 112960 },
-  { time: "10:12:12 AM", price: 112945 },
+  { time: "9:44:36 AM", price: 112920 },
+  { time: "9:44:40 AM", price: 112925 },
+  { time: "9:44:44 AM", price: 112935 },
+  { time: "9:44:48 AM", price: 112940 },
+  { time: "9:44:52 AM", price: 112945 },
+  { time: "9:45:00 AM", price: 112930 },
+  { time: "9:45:06 AM", price: 112920 },
+]
+
+const liveBets = [
+  { index: 0, amount: "+$1", x: 5, y: 35 },
+  { index: 1, amount: "+$2", x: 5, y: 55 },
+  { index: 2, amount: "+$3", x: 5, y: 75 },
+  { index: 3, amount: "+$8", x: 5, y: 95 },
+  { index: 6, amount: "+$1", x: 5, y: 115 },
 ]
 
 const timeButtons = ["5 AM", "6 AM", "7 AM", "8 AM"]
@@ -22,7 +30,7 @@ export function EventChart() {
   const minPrice = Math.min(...chartData.map((d) => d.price))
   const maxPrice = Math.max(...chartData.map((d) => d.price))
   const priceRange = maxPrice - minPrice
-  const targetPrice = 112970
+  const targetPrice = 112960
 
   return (
     <div className="space-y-4">
@@ -35,20 +43,37 @@ export function EventChart() {
             <span>$112,960</span>
             <span>$112,950</span>
             <span>$112,940</span>
+            <span>$112,930</span>
+            <span>$112,920</span>
+            <span>$112,900</span>
           </div>
 
           {/* Target line */}
-          <div className="absolute left-0 right-12 top-8 flex items-center">
+          <div className="absolute left-0 right-12 bottom-20 flex items-center">
             <div className="h-px flex-1 border-t-2 border-dashed border-muted-foreground/30" />
             <div className="ml-2 rounded bg-muted px-2 py-0.5 text-xs flex items-center gap-1">
               <span className="text-muted-foreground">Target</span>
               <TrendingUp className="h-3 w-3" />
             </div>
-            <span className="ml-2 text-xs text-muted-foreground">$112,970</span>
+            <span className="ml-2 text-xs text-muted-foreground">$112,960</span>
           </div>
 
+          {/* Live bet annotations */}
+          {liveBets.map((bet, i) => (
+            <div
+              key={i}
+              className="absolute text-sm font-semibold text-green-600"
+              style={{
+                left: `${bet.x}%`,
+                top: `${bet.y}%`,
+              }}
+            >
+              {bet.amount}
+            </div>
+          ))}
+
           {/* Chart SVG */}
-          <svg className="h-full w-full pr-12" viewBox="0 0 400 200" preserveAspectRatio="none">
+          <svg className="h-full w-full pr-12 pl-12" viewBox="0 0 400 200" preserveAspectRatio="none">
             {/* Line */}
             <path
               d={`M 0 ${200 - ((chartData[0].price - minPrice) / priceRange) * 160} ${chartData
@@ -74,9 +99,11 @@ export function EventChart() {
           </svg>
 
           {/* X-axis labels */}
-          <div className="absolute bottom-0 left-0 right-12 flex justify-between text-xs text-muted-foreground">
+          <div className="absolute bottom-0 left-0 right-12 flex justify-between text-xs text-muted-foreground pl-12">
             {chartData.map((d, i) => (
-              <span key={i}>{d.time}</span>
+              <span key={i} className="text-[10px]">
+                {d.time}
+              </span>
             ))}
           </div>
         </div>
